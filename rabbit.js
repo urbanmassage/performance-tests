@@ -22,7 +22,7 @@ rabbit.on('error', function(err) {
 
 runner(function listen(next) {
 
-  rabbit.rpcListener(channel, function(message, done) {
+  rabbit.rpcListener(channel, { prefetch: 100 }, function(message, done) {
     message.queue.shift();
     done();
   });

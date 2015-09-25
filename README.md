@@ -43,19 +43,19 @@ Avg: 80.192
 ### rabbitr
 #### 10
 ```
-Done 1000 in 10.1 seconds with concurrency=10
+Done 1000 in 4.682 seconds with concurrency=10
 ---------------------
-Min: 0
-Max: 201
-Avg: 100.61
+Min: 25
+Max: 97
+Avg: 46.606
 ```
 #### 50
 ```
-Done 1000 in 10.632 seconds with concurrency=50
+Done 1000 in 4.887 seconds with concurrency=50
 ---------------------
-Min: 0
-Max: 629
-Avg: 524.089
+Min: 63
+Max: 349
+Avg: 239.978
 ```
 
 ### amqplib
