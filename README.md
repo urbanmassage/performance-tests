@@ -57,3 +57,21 @@ Min: 0
 Max: 629
 Avg: 524.089
 ```
+
+### amqplib
+#### 10
+```
+Done 1000 in 3.659 seconds with concurrency=10
+---------------------
+Min: 17
+Max: 119
+Avg: 36.49
+```
+#### 50
+```
+Done 1000 in 3.614 seconds with concurrency=50
+---------------------
+Min: 47
+Max: 382
+Avg: 179.391
+```
