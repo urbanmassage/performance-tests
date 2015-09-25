@@ -1,9 +1,10 @@
 var async = require('async');
 
-module.exports = function(listen, run, limit) {
+module.exports = function(listen, run) {
   listen(function() {
 
-    var count = 1000;
+    var count = process.env.COUNT || 1000;
+    var concurrency = process.env.CONCURRENCY || 10;
     var results = [];
 
     function runOnce(i, next) {
@@ -18,7 +19,7 @@ module.exports = function(listen, run, limit) {
 
     var start = +new Date();
 
-    async.timesLimit(count, limit || 10, runOnce, function(err) {
+    async.timesLimit(count, concurrency || 10, runOnce, function(err) {
       if (err) throw err;
 
       var end = +new Date();
@@ -32,7 +33,7 @@ module.exports = function(listen, run, limit) {
 
       var avg = sum / results.length;
 
-      console.log('Done %d in %s seconds with concurrency=%d', count, (end - start) / 1000, limit);
+      console.log('Done %d in %s seconds with concurrency=%d', count, (end - start) / 1000, concurrency);
       console.log('---------------------');
       console.log('Min: %d', min);
       console.log('Max: %d', max);

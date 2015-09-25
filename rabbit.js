@@ -29,5 +29,6 @@ runner(function listen(next) {
 
   setTimeout(next, 200);
 }, function runOnce(i, next) {
+
   rabbit.rpcExec(channel, {}, next);
-}, 10);
+});
