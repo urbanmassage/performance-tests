@@ -5,7 +5,7 @@ var runner = require('./runner');
 
 var PORT = 9991;
 
-runner(function listen(next) {
+module.exports = runner(function listen(next) {
 
   http.createServer(function(request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json' });
@@ -22,3 +22,5 @@ runner(function listen(next) {
     json: true,
   }, next);
 });
+
+if (require.main === module) module.exports.run();

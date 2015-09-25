@@ -18,7 +18,7 @@ if (process.env.RABBITMQ_URL) {
 
 var connection;
 
-runner(function listen(next) {
+module.exports = runner(function listen(next) {
 
   amqp.connect(url).then(function(conn) {
     process.once('SIGINT', function() { conn.close(); });
@@ -66,3 +66,5 @@ runner(function listen(next) {
     }).catch(next);
   });
 });
+
+if (require.main === module) module.exports.run();

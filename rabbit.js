@@ -20,7 +20,7 @@ rabbit.on('error', function(err) {
   throw err;
 });
 
-runner(function listen(next) {
+module.exports = runner(function listen(next) {
 
   rabbit.rpcListener(channel, { prefetch: 100 }, function(message, done) {
     message.queue.shift();
@@ -32,3 +32,5 @@ runner(function listen(next) {
 
   rabbit.rpcExec(channel, {}, next);
 });
+
+if (require.main === module) module.exports.run();

@@ -5,7 +5,7 @@ var runner = require('./runner');
 
 var PORT = 9990;
 
-runner(function listen(next) {
+module.exports = runner(function listen(next) {
 
   var app = express();
 
@@ -22,3 +22,5 @@ runner(function listen(next) {
     json: true,
   }, next);
 });
+
+if (require.main === module) module.exports.run();
