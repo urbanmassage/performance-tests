@@ -25,55 +25,44 @@ runner(function listen(next) {
 
     connection = conn;
 
-    return conn.createChannel();
-  }).then(function on_open(ch) {
-    function reply(msg) {
-      console.log(' [x] Responding to (%s)', msg.content);
-      ch.sendToQueue(msg.properties.replyTo,
-                     new Buffer(JSON.stringify({ test: true, })),
-                     {correlationId: msg.properties.correlationId});
-      ch.ack(msg);
-    }
+    return conn.createChannel().then(function(ch) {
 
-    return ch.assertQueue(channel, {durable: false}).then(function() {
-      ch.prefetch(10);
-      return ch.consume(channel, reply);
-    }).then(function() {
-      console.log(' [x] Awaiting RPC requests');
+      function reply(msg) {
+        ch.sendToQueue(msg.properties.replyTo,
+                       new Buffer('hi test'),
+                       {correlationId: msg.properties.correlationId});
+        ch.ack(msg);
+      }
+
+      return ch.assertQueue(channel, {durable: false}).then(function() {
+        ch.prefetch(1);
+        return ch.consume(channel, reply);
+      });
     });
   }).then(function() {next();}, next);
 }, function runOnce(i, next) {
-
-  connection.createChannel().then(function on_open(ch) {
+  connection.createChannel().then(function(ch) {
     var answer = defer();
     var corrId = uuid();
+
     function maybeAnswer(msg) {
       if (msg.properties.correlationId === corrId) {
         answer.resolve(msg.content.toString());
       }
     }
 
-    var ok = ch.assertQueue('', {exclusive: true})
-      .then(function(qok) { return qok.queue; });
-
-    ok = ok.then(function(queue) {
+    return ch.assertQueue('', {exclusive: true})
+    .then(function(qok) { return qok.queue; })
+    .then(function(queue) {
       return ch.consume(queue, maybeAnswer, {noAck: true})
         .then(function() { return queue; });
-    });
-
-    ok = ok.then(function(queue) {
-      console.log(' [x] Requesting (%d)', i);
-
-      ch.sendToQueue('rpc_queue', new Buffer(JSON.stringify({ test: true, })), {
+    }).then(function(queue) {
+      ch.sendToQueue(channel, new Buffer('test'), {
         correlationId: corrId, replyTo: queue
       });
       return answer.promise;
-    });
-
-    return ok.then(function(fibN) {
-      console.log(' [.] Got %d', fibN);
-    });
-  }).then(function() {
-    next();
-  }, next);
+    }).then(function(response) {
+      next(null, response);
+    }).catch(next);
+  });
 });
