@@ -7,37 +7,37 @@ A few tests used to determine and compare the performance of a few technologies 
 ### http
 #### 10
 ```
-Done 1000 in 1.544 seconds with concurrency=10
+Done 1000 in 1.854 seconds with concurrency=10
 ---------------------
-Min: 0
-Max: 105
-Avg: 15.179
+Min: 9
+Max: 106
+Avg: 18.354
 ```
 #### 50
 ```
-Done 1000 in 1.787 seconds with concurrency=50
+Done 1000 in 1.559 seconds with concurrency=50
 ---------------------
-Min: 0
-Max: 174
-Avg: 88.04
+Min: 48
+Max: 172
+Avg: 76.255
 ```
 
 ### express
 #### 10
 ```
-Done 1000 in 1.623 seconds with concurrency=10
+Done 1000 in 1.954 seconds with concurrency=10
 ---------------------
-Min: 0
-Max: 72
-Avg: 16.124
+Min: 7
+Max: 108
+Avg: 19.377
 ```
 #### 50
 ```
-Done 1000 in 1.63 seconds with concurrency=50
+Done 1000 in 1.739 seconds with concurrency=50
 ---------------------
-Min: 0
-Max: 194
-Avg: 80.192
+Min: 51
+Max: 270
+Avg: 83.714
 ```
 
 ### rabbitr
