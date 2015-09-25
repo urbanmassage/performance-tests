@@ -3,8 +3,8 @@ var async = require('async');
 module.exports = function(listen, run) {
   listen(function() {
 
-    var count = process.env.COUNT || 1000;
-    var concurrency = process.env.CONCURRENCY || 10;
+    var count = parseInt(process.env.COUNT) || 1000;
+    var concurrency = parseInt(process.env.CONCURRENCY) || 10;
     var results = [];
 
     function runOnce(i, next) {
