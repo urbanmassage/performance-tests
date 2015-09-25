@@ -21,4 +21,4 @@ runner(function listen(next) {
     url: 'http://127.0.0.1:'+PORT,
     json: true,
   }, next);
-}, 50);
+}, 10);
