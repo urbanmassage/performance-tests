@@ -3,75 +3,18 @@
 A few tests used to determine and compare the performance of a few technologies we might use.
 
 ## Results
-
-### http
-#### 10
+With concurrency *10*:
 ```
-Done 1000 in 1.854 seconds with concurrency=10
----------------------
-Min: 9
-Max: 106
-Avg: 18.354
-```
-#### 50
-```
-Done 1000 in 1.559 seconds with concurrency=50
----------------------
-Min: 48
-Max: 172
-Avg: 76.255
+http     in 1847ms  min  6  avg 18.277 max   81
+express  in 2017ms  min 11  avg 20.099 max   66
+rabbit   in 5657ms  min 27  avg 56.315 max  210
+amqplib  in 4053ms  min 17  avg 40.451 max  124
 ```
 
-### express
-#### 10
+With concurrency *50*:
 ```
-Done 1000 in 1.954 seconds with concurrency=10
----------------------
-Min: 7
-Max: 108
-Avg: 19.377
-```
-#### 50
-```
-Done 1000 in 1.739 seconds with concurrency=50
----------------------
-Min: 51
-Max: 270
-Avg: 83.714
-```
-
-### rabbitr
-#### 10
-```
-Done 1000 in 4.682 seconds with concurrency=10
----------------------
-Min: 25
-Max: 97
-Avg: 46.606
-```
-#### 50
-```
-Done 1000 in 4.887 seconds with concurrency=50
----------------------
-Min: 63
-Max: 349
-Avg: 239.978
-```
-
-### amqplib
-#### 10
-```
-Done 1000 in 3.659 seconds with concurrency=10
----------------------
-Min: 17
-Max: 119
-Avg: 36.49
-```
-#### 50
-```
-Done 1000 in 3.614 seconds with concurrency=50
----------------------
-Min: 47
-Max: 382
-Avg: 179.391
+http     in 1562ms  min 47  avg  77.062 max 149
+express  in 1552ms  min 54  avg  76.654 max 124
+rabbit   in 4784ms  min 83  avg 233.911 max 319
+amqplib  in 3630ms  min 49  avg 180.352 max 324
 ```
