@@ -24,7 +24,7 @@ module.exports = function(listen, run) {
 
       var end = +new Date();
 
-      var min = 0, max = 0, sum = 0;
+      var min = Infinity, max = 0, sum = 0;
       results.forEach(function(result) {
         min = Math.min(min, result);
         max = Math.max(max, result);
