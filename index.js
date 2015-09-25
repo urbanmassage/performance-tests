@@ -1,7 +1,7 @@
 var async = require('async');
 var chalk = require('chalk');
 
-async.mapSeries([
+async.mapSeries(process.env.TESTS.split(',') || [
   'http',
   'express',
   'rabbit',
