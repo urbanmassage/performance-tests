@@ -50,7 +50,7 @@ async.mapSeries([
   html += '<style>' +
             'html {margin: 0; padding: 0; background: #ccc;}' +
             'body {margin: 0; padding: 20px;}' +
-            'pre {margin: 0 auto; padding: 20px; background: #fff; width: 400px; max-width: 100%}' +
+            'pre {margin: 0 auto; padding: 20px; background: #fff; width: 600px; max-width: 100%}' +
             '.red {color: red}' +
             '.cyan {color: cyan}' +
             '.green {color: green}' +
