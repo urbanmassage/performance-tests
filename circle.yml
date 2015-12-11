@@ -1,3 +1,10 @@
+dependencies:
+  cache_directories:
+    - "node_modules"
+  override:
+    - npm install
+    - npm prune
+
 deployment:
   master:
     branch: master
