@@ -1,12 +1,19 @@
 var async = require('async');
 var chalk = require('chalk');
+var fs = require('fs')
 
-async.mapSeries((process.env.TESTS || [
-  'http',
-  'express',
-  'rabbit',
+async.mapSeries([
   'amqplib',
-].join(',')).split(','), function(file, next) {
+
+  'express',
+  'express-b',
+
+  'http',
+  'http-b',
+
+  'rabbit',
+  'rabbit-b',
+], function(file, next) {
   console.log('Running %s', chalk.cyan(file));
 
   var m = require('./tests/' + file);
@@ -34,9 +41,19 @@ async.mapSeries((process.env.TESTS || [
     return chalk.blue(a);
   }
 
+  var html = '<html><head><title>Performance Tests | Urban Massage</title></head><body><pre>';
+
   results.forEach(function(result) {
-    console.log('%s\t in %sms\tmin %s\tavg\t%s max\t%s', chalk.cyan(result.name), c(result.dur, dur, b_dur), c(result.min, min, b_min), c(result.avg, avg, b_avg), c(result.max, max, b_max));
+    html += '%s\t in %sms\tmin %s\tavg\t%s max\t%s', chalk.cyan(result.name), c(result.dur, dur, b_dur), c(result.min, min, b_min), c(result.avg, avg, b_avg), c(result.max, max, b_max);
   });
 
-  process.exit();
+  html += '</pre></body></html>';
+
+  fs.writeFile('new_index.html', html, function(err){
+    if (err) {
+      console.error(err.stack);
+      process.exit(1);
+    }
+    process.exit();
+  });
 });
