@@ -60,7 +60,7 @@ async.mapSeries([
   html += '</head><body><pre>';
 
   results.forEach(function(result) {
-    html += '%s\t in %sms\tmin %s\tavg\t%s max\t%s', color('cyan', result.name), c(result.dur, dur, b_dur), c(result.min, min, b_min), c(result.avg, avg, b_avg), c(result.max, max, b_max) + '\n';
+    html += color('cyan', result.name) + '\t in ' + c(result.dur, dur, b_dur) + 'ms\tmin ' + c(result.min, min, b_min) + '\tavg\t' + c(result.avg, avg, b_avg) + ' max\t' + c(result.max, max, b_max) + '\n';
   });
 
   html += '</pre></body></html>';
