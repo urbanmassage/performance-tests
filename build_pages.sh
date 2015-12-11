@@ -1,6 +1,7 @@
 node page || exit 1
 
 git checkout gh-pages
+git pull origin gh-pages
 
 rm index.html || true
 mv new_index.html index.html
