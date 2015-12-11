@@ -15,6 +15,7 @@
     "body-parser": "^1.14.0",
     "chalk": "^1.1.1",
     "express": "^4.13.3",
+    "mongodb": "^2.1.0",
     "node-uuid": "^1.4.3",
     "rabbitr": "^6.0.0",
     "request": "^2.63.0",
