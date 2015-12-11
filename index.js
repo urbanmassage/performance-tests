@@ -1,13 +1,14 @@
 var async = require('async');
 var chalk = require('chalk');
 
-async.mapSeries(process.env.TESTS.split(',') || [
+async.mapSeries((process.env.TESTS || [
   'http',
   'express',
   'rabbit',
   'amqplib',
-], function(file, next) {
-  console.log('Running %s', chalk.cyan(file));
+].join(',')).split(','), function(file, next) {
+  if (!process.env.NO_LOG)
+    console.log('Running %s', chalk.cyan(file));
 
   var m = require('./' + file);
   m.execute(function(results) {
