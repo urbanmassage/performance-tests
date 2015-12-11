@@ -4,7 +4,7 @@
   "description": "A few tests used to determine and compare the performance of a few technologies we might use.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "exit 0"
   },
   "author": "Louay Alakkad <louay@alakkad.me>",
   "license": "ISC",
