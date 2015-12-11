@@ -1,6 +1,6 @@
 var async = require('async');
 
-module.exports = function runner(listen, run) {
+module.exports = function runner(listen, run, cleanup) {
   function execute(done) {
     listen(function() {
 
@@ -21,6 +21,8 @@ module.exports = function runner(listen, run) {
       var start = +new Date();
 
       async.timesLimit(count, concurrency || 10, runOnce, function(err) {
+        if (cleanup) cleanup();
+
         if (err) throw err;
 
         var end = +new Date();

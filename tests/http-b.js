@@ -3,7 +3,8 @@ var request = require('request');
 
 var runner = require('./runner');
 
-var PORT = 9991;
+var PORT = 9993;
+var server;
 
 var s = '';
 
@@ -12,12 +13,12 @@ while (s.length < 100 * 1024) {
 }
 
 module.exports = runner(function listen(next) {
-
-  http.createServer(function(request, response) {
+  server = http.createServer(function(request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end(JSON.stringify(s));
     response = null;
-  }).listen(PORT);
+  });
+  server.listen(PORT);
 
   next();
 }, function runOnce(i, next) {
@@ -28,6 +29,8 @@ module.exports = runner(function listen(next) {
     data: JSON.stringify(s),
     json: true,
   }, next);
+}, function cleanup() {
+  server.close();
 });
 
 if (require.main === module) module.exports.run();

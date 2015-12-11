@@ -1,4 +1,4 @@
-node page
+node page || exit 1
 
 git checkout gh-pages
 

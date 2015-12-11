@@ -2,7 +2,7 @@ var Rabbitr = require('rabbitr');
 
 var runner = require('./runner');
 
-var channel = 'performance-test';
+var channel = 'performance-test.b';
 
 var opts = {
   host: process.env.RABBITMQ_HOST || 'localhost',
