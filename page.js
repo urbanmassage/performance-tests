@@ -51,6 +51,9 @@ async.mapSeries([
             'html {margin: 0; padding: 0; background: #ccc;}' +
             'body {margin: 0; padding: 20px;}' +
             'pre {margin: 0 auto; padding: 20px; background: #fff; width: 600px; max-width: 100%}' +
+            'table {width: 100%}' +
+            'th, td {text-align: right}' +
+            'th:first-child {text-align: left}' +
             '.red {color: red}' +
             '.cyan {color: cyan}' +
             '.green {color: green}' +
@@ -59,9 +62,29 @@ async.mapSeries([
 
   html += '</head><body><pre>';
 
+  html += '<table>';
+  html += '<thead>';
+    html += '<tr>';
+    html += '<th>name</th>';
+    html += '<th>dur</th>';
+    html += '<th>min</th>';
+    html += '<th>avg</th>';
+    html += '<th>max</th>';
+    html += '</tr>';
+  html += '</thead>';
+
+  html += '<tbody>';
   results.forEach(function(result) {
-    html += color('cyan', result.name) + '\t in ' + c(result.dur, dur, b_dur) + 'ms\tmin ' + c(result.min, min, b_min) + '\tavg\t' + c(result.avg, avg, b_avg) + ' max\t' + c(result.max, max, b_max) + '\n';
+    html += '<tr>';
+    html += '<th>' + color('cyan', result.name) + '</th>';
+    html += '<td>' + c(result.dur, dur, b_dur) + 'ms</td>';
+    html += '<td>' + c(result.min, min, b_min) + 'ms</td>';
+    html += '<td>' + c(result.avg, avg, b_avg) + 'ms</td>';
+    html += '<td>' + c(result.max, max, b_max) + 'ms</td>';
+    html += '<tr>';
   });
+  html += '</tbody>';
+  html += '</table>';
 
   html += '</pre></body></html>';
 
