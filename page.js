@@ -55,7 +55,7 @@ async.mapSeries([
             'th, td {text-align: right}' +
             'th:first-child {text-align: left}' +
             '.red {color: red}' +
-            '.cyan {color: cyan}' +
+            '.gray {color: #666}' +
             '.green {color: green}' +
             '.blue {color: blue}' +
           '</style>';
@@ -76,7 +76,7 @@ async.mapSeries([
   html += '<tbody>';
   results.forEach(function(result) {
     html += '<tr>';
-    html += '<th>' + color('cyan', result.name) + '</th>';
+    html += '<th>' + color('gray', result.name) + '</th>';
     html += '<td>' + c(result.dur, dur, b_dur) + 'ms</td>';
     html += '<td>' + c(result.min, min, b_min) + 'ms</td>';
     html += '<td>' + c(result.avg, avg, b_avg) + 'ms</td>';
