@@ -50,6 +50,7 @@ async.mapSeries([
   html += '<style>' +
             'html {margin: 0; padding: 0; background: #ccc;}' +
             'body {margin: 0; padding: 20px;}' +
+            'h1 {margin: 0 0 1.5em}' +
             'pre {margin: 0 auto; padding: 20px; background: #fff; width: 600px; max-width: 100%}' +
             'table {width: 100%}' +
             'th, td {text-align: right}' +
@@ -61,6 +62,8 @@ async.mapSeries([
           '</style>';
 
   html += '</head><body><pre>';
+
+  html += '<h1>Performance Tests</h1>';
 
   html += '<table>';
   html += '<thead>';
@@ -85,6 +88,8 @@ async.mapSeries([
   });
   html += '</tbody>';
   html += '</table>';
+
+  html += '<br /><a href="https://github.com/urbanmassage/performance-tests/">Source Code</a>';
 
   html += '</pre></body></html>';
 
